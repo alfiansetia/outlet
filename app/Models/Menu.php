@@ -26,7 +26,7 @@ class Menu extends Model
                 if ($value && file_exists(public_path('images/menu/' . $value))) {
                     return asset('images/menu/' . $value);
                 }
-                return asset('images/default.png');
+                return asset('images/default_menu.jpg');
             },
         );
     }

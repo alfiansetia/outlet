@@ -69,7 +69,7 @@ class User extends Authenticatable
                 if ($value && file_exists(public_path('images/avatar/' . $value))) {
                     return asset('images/avatar/' . $value);
                 }
-                return asset('images/default.png');
+                return asset('images/default_avatar.png');
             },
         );
     }
