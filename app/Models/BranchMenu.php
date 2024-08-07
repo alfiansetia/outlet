@@ -33,7 +33,7 @@ class BranchMenu extends Model
             $query->whereRelation('menu', 'category',  $filters['category']);
         }
         if (isset($filters['name'])) {
-            $query->whereRelation('menu', 'name',  '%' . $filters['name'] . '%');
+            $query->whereRelation('menu', 'name', 'like',  '%' . $filters['name'] . '%');
         }
         if (isset($filters['is_favorite'])) {
             $query->whereRelation('menu', 'is_favorite',  $filters['is_favorite']);
