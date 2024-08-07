@@ -14,10 +14,10 @@ class Cart extends Model
     protected function casts(): array
     {
         return [
-            'id'        => 'integer',
-            'user_id'   => 'integer',
-            'branch_id' => 'integer',
-            'qty'       => 'integer',
+            'id'                => 'integer',
+            'user_id'           => 'integer',
+            'branch_menu_id'    => 'integer',
+            'qty'               => 'integer',
         ];
     }
 
