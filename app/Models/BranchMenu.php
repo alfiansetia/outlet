@@ -29,6 +29,9 @@ class BranchMenu extends Model
         if (isset($filters['branch_id'])) {
             $query->where('branch_id',  $filters['branch_id']);
         }
+        if (isset($filters['category'])) {
+            $query->whereRelation('menu', 'category',  $filters['category']);
+        }
         if (isset($filters['menu_id'])) {
             $query->where('menu_id',  $filters['menu_id']);
         }
