@@ -32,6 +32,15 @@ class BranchMenu extends Model
         if (isset($filters['category'])) {
             $query->whereRelation('menu', 'category',  $filters['category']);
         }
+        if (isset($filters['name'])) {
+            $query->whereRelation('menu', 'name',  '%' . $filters['name'] . '%');
+        }
+        if (isset($filters['is_favorite'])) {
+            $query->whereRelation('menu', 'is_favorite',  $filters['is_favorite']);
+        }
+        if (isset($filters['is_available'])) {
+            $query->whereRelation('menu', 'is_available',  $filters['is_available']);
+        }
         if (isset($filters['menu_id'])) {
             $query->where('menu_id',  $filters['menu_id']);
         }
