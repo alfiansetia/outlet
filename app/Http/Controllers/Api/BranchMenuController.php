@@ -21,7 +21,7 @@ class BranchMenuController extends Controller
     public function paginate(Request $request)
     {
         $filters = $request->only(['menu_id', 'category', 'name', 'is_favorite', 'is_available', 'branch_id', 'order_by_id']);
-        $data = BranchMenu::query()->with(['menu', 'branch'])->filter($filters)->paginate(intval($request->limit ?? 10))->withQueryString();
+        $data = BranchMenu::query()->with(['menu', 'branch', 'cart_items'])->filter($filters)->paginate(intval($request->limit ?? 10))->withQueryString();
         return BranchMenuResource::collection($data);
     }
 

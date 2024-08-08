@@ -27,6 +27,13 @@ class BranchMenuResource extends JsonResource
             'menu_id'           => $this->menu_id,
             'branch'            => new BranchResource($this->whenLoaded('branch')),
             'menu'              => new MenuResource($this->whenLoaded('menu')),
+            'incart'            => $this->whenLoaded('cart_items', function ($value) {
+                $val = 0;
+                foreach ($value as $item) {
+                    $val = $val + $item->qty;
+                }
+                return intval($val);
+            }),
         ];
     }
 }

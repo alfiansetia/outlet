@@ -21,6 +21,7 @@ class BranchMenu extends Model
             'discount'      => 'integer',
             'is_favorite'   => 'boolean',
             'is_available'  => 'boolean',
+            'incart'        => 'integer',
         ];
     }
 
@@ -65,5 +66,21 @@ class BranchMenu extends Model
     public function menu()
     {
         return $this->belongsTo(Menu::class);
+    }
+
+    public function cart_items()
+    {
+        $user = auth()->user();
+        if (!$user || !$user->branch_id) {
+            return $this->hasMany(Cart::class)->where('user_id', 0);
+        }
+        return $this->hasMany(Cart::class)
+            ->where('user_id', $user->id)
+            ->whereRelation('branch_menu', 'branch_id', $user->branch_id);
+    }
+
+    public function incart()
+    {
+        return $this->cart_items()->sum('qty');
     }
 }
