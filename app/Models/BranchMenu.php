@@ -53,7 +53,7 @@ class BranchMenu extends Model
     public function discount_price()
     {
         if ($this->discount < 1) {
-            return $this->price;
+            return 0;
         }
         return $this->price - ($this->price * $this->discount / 100);
     }
