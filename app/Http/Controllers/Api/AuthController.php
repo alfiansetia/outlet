@@ -24,6 +24,11 @@ class AuthController extends Controller
                 'message' => 'Invalid credentials'
             ], 401);
         }
+        if (!$user->branch_id) {
+            return response()->json([
+                'message' => 'You Dont Have Branch, Contact Admin!'
+            ], 401);
+        }
         $token = $user->createToken('api-token')->plainTextToken;
         return response()->json([
             'access_token'  => $token,
