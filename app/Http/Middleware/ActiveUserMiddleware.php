@@ -16,13 +16,18 @@ class ActiveUserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user()->is_active) {
+        $user = auth()->user();
+        if (!$user || !$user->is_active || !$user->branch_id) {
+            $message = 'Your account is not active. Please contact admin!';
             Auth::guard('web')->logout();
+            if (!$user->branch_id) {
+                $message = 'You Dont Have Branch, Contact Admin!';
+            }
             if ($request->ajax() || $request->expectsJson()) {
-                return response()->json(['message' => 'Your account is not active. Please contact admin!'], 401);
+                return response()->json(['message' => $message], 401);
             }
             return redirect()->route('login')
-                ->withErrors(['email' => 'Your account is not active. Please contact admin!.'])
+                ->withErrors(['email' => $message])
                 ->withInput();
         }
         return $next($request);
