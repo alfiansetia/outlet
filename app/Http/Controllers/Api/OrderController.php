@@ -101,7 +101,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return new OrderResource($order->load(['user', 'branch', 'items']));
+        return new OrderResource($order->load(['user', 'branch', 'items.branch_menu.menu']));
     }
 
     /**
