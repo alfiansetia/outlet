@@ -28,7 +28,7 @@ class CartController extends Controller
             'branch_id'     => $user->branch_id,
             'user_id'       => $user->id,
             'order_by_id'   => $request->order_by_id,
-        ])->with(['branch_menu.menu', 'user'])->paginate(intval($request->limit ?? 10))->withQueryString();
+        ])->with(['branch_menu.menu', 'branch_menu.branch', 'user'])->paginate(intval($request->limit ?? 10))->withQueryString();
         return CartResource::collection($data);
     }
 

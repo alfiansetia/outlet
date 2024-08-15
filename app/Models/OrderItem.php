@@ -14,7 +14,12 @@ class OrderItem extends Model
     protected function casts(): array
     {
         return [
-            'id'            => 'integer',
+            'id'                => 'integer',
+            'order_id'          => 'integer',
+            'branch_menu_id'    => 'integer',
+            'price'             => 'integer',
+            'discount'          => 'integer',
+            'qty'               => 'integer',
         ];
     }
 
