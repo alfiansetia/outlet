@@ -20,6 +20,7 @@ class OrderItem extends Model
             'price'             => 'integer',
             'discount'          => 'integer',
             'qty'               => 'integer',
+            'subtotal'          => 'integer',
         ];
     }
 
