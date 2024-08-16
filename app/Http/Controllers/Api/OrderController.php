@@ -47,6 +47,7 @@ class OrderController extends Controller
         }
 
         $this->validate($request, [
+            'name'      => 'required|max:20',
             'payment'   => 'required|in:cash,transfer',
             'bill'      => 'required|integer|gte:0',
             'ppn'       => 'required|integer|gte:0',
