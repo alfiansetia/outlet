@@ -74,6 +74,7 @@ class OrderController extends Controller
 
         $order = Order::create([
             'branch_id' => $user->branch_id,
+            'name'      => $request->name,
             'user_id'   => $user->id,
             'date'      => date('Y-m-d H:i:s'),
             'number'    => strtoupper(Str::random(10)),
